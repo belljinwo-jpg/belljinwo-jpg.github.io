@@ -1,0 +1,395 @@
+# GitHub REST API — Gists Reference
+
+GitHub's v3 REST API.
+
+## Gists
+
+### GitHub v3 REST API
+
+Path: `/gists.html`
+Version: 1.1.4
+
+GitHub's v3 REST API.
+
+#### Operations
+
+##### GET /gists
+
+Summary: List gists for the authenticated user
+
+Lists the authenticated user's gists or if called anonymously, this endpoint returns all public gists:
+
+Parameters:
+- `since` (query, string, optional) - Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden
+
+##### POST /gists
+
+Summary: Create a gist
+
+Allows you to add a new gist with one or more files.
+
+> [!NOTE]
+> Don't name your files "gistfile" with a numerical suffix. This is the format of the automatic naming scheme that Gist uses internally.
+
+Request body: application/json
+
+Responses:
+- 201: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+- 422: Validation failed, or the endpoint has been spammed.
+
+##### GET /gists/public
+
+Summary: List public gists
+
+List public gists sorted by most recently updated to least recently updated.
+
+Note: With [pagination](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api), you can fetch up to 3000 gists. For example, you can fetch 100 pages with 30 gists per page or 30 pages with 100 gists per page.
+
+Parameters:
+- `since` (query, string, optional) - Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden
+- 422: Validation failed, or the endpoint has been spammed.
+
+##### GET /gists/starred
+
+Summary: List starred gists
+
+List the authenticated user's starred gists:
+
+Parameters:
+- `since` (query, string, optional) - Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 401: Requires authentication
+- 403: Forbidden
+
+##### GET /gists/{gist_id}
+
+Summary: Get a gist
+
+Gets a specified gist.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden Gist
+- 404: Resource not found
+
+##### DELETE /gists/{gist_id}
+
+Summary: Delete a gist
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 204: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### PATCH /gists/{gist_id}
+
+Summary: Update a gist
+
+Allows you to update a gist's description and to update, delete, or rename gist files. Files
+from the previous version of the gist that aren't explicitly changed during an edit
+are unchanged.
+
+At least one of `description` or `files` is required.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Request body: application/json
+
+Responses:
+- 200: Response
+- 404: Resource not found
+- 422: Validation failed, or the endpoint has been spammed.
+
+##### GET /gists/{gist_id}/comments
+
+Summary: List gist comments
+
+Lists the comments on a gist.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### POST /gists/{gist_id}/comments
+
+Summary: Create a gist comment
+
+Creates a comment on a gist.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Request body: application/json
+
+Responses:
+- 201: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### GET /gists/{gist_id}/comments/{comment_id}
+
+Summary: Get a gist comment
+
+Gets a comment on a gist.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `comment_id` (path, integer, required) - The unique identifier of the comment.
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden Gist
+- 404: Resource not found
+
+#### Models
+
+- base-gist: Base Gist
+- gist-simple: Gist Simple
+- gist-comment: A comment made to a gist.
+- nullable-simple-user: A GitHub user.
+- simple-user: A GitHub user.
+- basic-error: Basic Error
+- public-user: Public User
+- gist-history: Gist History
+- validation-error: Validation Error
+- author-association: How the author is associated with the repository.
+
+## Gist management
+
+### GitHub v3 REST API
+
+Path: `/gist-management.html`
+Version: 1.1.4
+
+GitHub's v3 REST API.
+
+#### Operations
+
+##### DELETE /gists/{gist_id}/comments/{comment_id}
+
+Summary: Delete a gist comment
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `comment_id` (path, integer, required) - The unique identifier of the comment.
+
+Responses:
+- 204: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### PATCH /gists/{gist_id}/comments/{comment_id}
+
+Summary: Update a gist comment
+
+Updates a comment on a gist.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `comment_id` (path, integer, required) - The unique identifier of the comment.
+
+Request body: application/json
+
+Responses:
+- 200: Response
+- 404: Resource not found
+
+##### GET /gists/{gist_id}/commits
+
+Summary: List gist commits
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### GET /gists/{gist_id}/forks
+
+Summary: List gist forks
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### POST /gists/{gist_id}/forks
+
+Summary: Fork a gist
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 201: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+- 422: Validation failed, or the endpoint has been spammed.
+
+##### GET /gists/{gist_id}/star
+
+Summary: Check if a gist is starred
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 204: Response if gist is starred
+- 304: Not modified
+- 403: Forbidden
+- 404: Not Found if gist is not starred
+
+##### PUT /gists/{gist_id}/star
+
+Summary: Star a gist
+
+Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 204: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### DELETE /gists/{gist_id}/star
+
+Summary: Unstar a gist
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+
+Responses:
+- 204: Response
+- 304: Not modified
+- 403: Forbidden
+- 404: Resource not found
+
+##### GET /gists/{gist_id}/{sha}
+
+Summary: Get a gist revision
+
+Gets a specified gist revision.
+
+This endpoint supports the following custom media types. For more information, see "[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types)."
+
+- **`application/vnd.github.raw+json`**: Returns the raw markdown. This is the default if you do not pass any specific media type.
+
+Parameters:
+- `gist_id` (path, string, required) - The unique identifier of the gist.
+- `sha` (path, string, required)
+
+Responses:
+- 200: Response
+- 403: Forbidden
+- 404: Resource not found
+- 422: Validation failed, or the endpoint has been spammed.
+
+##### GET /users/{username}/gists
+
+Summary: List gists for a user
+
+Lists public gists for the specified user:
+
+Parameters:
+- `username` (path, string, required) - The handle for the GitHub user account.
+- `since` (query, string, optional) - Only show results that were last updated after the given time. This is a timestamp in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DDTHH:MM:SSZ`.
+- `per_page` (query, integer, optional) - The number of results per page (max 100). For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+- `page` (query, integer, optional) - The page number of the results to fetch. For more information, see "[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api)."
+
+Responses:
+- 200: Response
+- 422: Validation failed, or the endpoint has been spammed.
+
+#### Models
+
+- gist-comment: A comment made to a gist.
+- gist-commit: Gist Commit
+- gist-simple: Gist Simple
+- base-gist: Base Gist
+- nullable-simple-user: A GitHub user.
+- author-association: How the author is associated with the repository.
+- basic-error: Basic Error
+- public-user: Public User
+- gist-history: Gist History
+- simple-user: A GitHub user.
+- validation-error: Validation Error

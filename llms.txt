@@ -1,0 +1,31 @@
+# GitHub REST API — Gists Reference
+
+> GitHub's v3 REST API.
+
+## Gists
+
+- [GitHub v3 REST API](/gists.html): GitHub's v3 REST API.
+- [List gists for the authenticated user](/gists.html#operation-gists-get): GET /gists - Lists the authenticated user's gists or if called anonymously, this endpoint returns all public gists:
+- [Create a gist](/gists.html#operation-gists-post): POST /gists - Allows you to add a new gist with one or more files.
+- [List public gists](/gists.html#operation-gists-public-get): GET /gists/public - List public gists sorted by most recently updated to least recently updated.
+- [List starred gists](/gists.html#operation-gists-starred-get): GET /gists/starred - List the authenticated user's starred gists:
+- [Get a gist](/gists.html#operation-gists-gist-id-get): GET /gists/{gist_id} - Gets a specified gist.
+- [Delete a gist](/gists.html#operation-gists-gist-id-delete): DELETE /gists/{gist_id}
+- [Update a gist](/gists.html#operation-gists-gist-id-patch): PATCH /gists/{gist_id} - Allows you to update a gist's description and to update, delete, or rename gist files. Files
+- [List gist comments](/gists.html#operation-gists-gist-id-comments-get): GET /gists/{gist_id}/comments - Lists the comments on a gist.
+- [Create a gist comment](/gists.html#operation-gists-gist-id-comments-post): POST /gists/{gist_id}/comments - Creates a comment on a gist.
+- [Get a gist comment](/gists.html#operation-gists-gist-id-comments-comment-id-get): GET /gists/{gist_id}/comments/{comment_id} - Gets a comment on a gist.
+
+## Gist management
+
+- [GitHub v3 REST API](/gist-management.html): GitHub's v3 REST API.
+- [Delete a gist comment](/gist-management.html#operation-gists-gist-id-comments-comment-id-delete): DELETE /gists/{gist_id}/comments/{comment_id}
+- [Update a gist comment](/gist-management.html#operation-gists-gist-id-comments-comment-id-patch): PATCH /gists/{gist_id}/comments/{comment_id} - Updates a comment on a gist.
+- [List gist commits](/gist-management.html#operation-gists-gist-id-commits-get): GET /gists/{gist_id}/commits
+- [List gist forks](/gist-management.html#operation-gists-gist-id-forks-get): GET /gists/{gist_id}/forks
+- [Fork a gist](/gist-management.html#operation-gists-gist-id-forks-post): POST /gists/{gist_id}/forks
+- [Check if a gist is starred](/gist-management.html#operation-gists-gist-id-star-get): GET /gists/{gist_id}/star
+- [Star a gist](/gist-management.html#operation-gists-gist-id-star-put): PUT /gists/{gist_id}/star - Note that you'll need to set `Content-Length` to zero when calling out to this endpoint. For more information, see "[HTTP method](https://docs.github.com/rest/guides/getting-started-with-the-rest-api#http-method)."
+- [Unstar a gist](/gist-management.html#operation-gists-gist-id-star-delete): DELETE /gists/{gist_id}/star
+- [Get a gist revision](/gist-management.html#operation-gists-gist-id-sha-get): GET /gists/{gist_id}/{sha} - Gets a specified gist revision.
+- [List gists for a user](/gist-management.html#operation-users-username-gists-get): GET /users/{username}/gists - Lists public gists for the specified user:
