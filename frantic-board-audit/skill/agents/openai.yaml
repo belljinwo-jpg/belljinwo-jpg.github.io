@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frantic Board Health Audit"
+  short_description: "Audit public Frantic inventory and health"
+  default_prompt: "Use $frantic-board-health-audit to audit captured Frantic board responses."

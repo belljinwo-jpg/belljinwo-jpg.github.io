@@ -1,0 +1,47 @@
+name: Frantic board audit receipt
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/frantic-board-audit.yml'
+      - 'frantic-board-audit/skill/**'
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install governed runner
+        run: npm install --global @runxhq/cli@0.6.8
+      - name: Run audit and create signed receipt
+        shell: bash
+        run: |
+          set -euo pipefail
+          export RUNX_RECEIPT_SIGN_KID="github-actions-frantic-audit-${GITHUB_RUN_ID}"
+          export RUNX_RECEIPT_SIGN_ED25519_SEED_BASE64="$(openssl rand -base64 32 | tr -d '\n')"
+          export RUNX_RECEIPT_SIGN_ISSUER_TYPE="hosted"
+          mkdir -p "$RUNNER_TEMP/receipts"
+          runx --version > frantic-board-audit/runx-version.txt
+          runx skill frantic-board-audit/skill --json --receipts "$RUNNER_TEMP/receipts" > frantic-board-audit/run-result.json
+          receipt_file="$(find "$RUNNER_TEMP/receipts" -type f -name 'sha256:*.json' | head -n 1)"
+          test -n "$receipt_file"
+          cp "$receipt_file" frantic-board-audit/receipt.json
+          receipt_id="$(jq -r '.id' frantic-board-audit/receipt.json)"
+          receipt_ref="runx:receipt:${receipt_id}"
+          jq --arg ref "$receipt_ref" '.receipt_ref=$ref | .observations += [{"id":"governed_receipt","value":$ref,"source":"https://belljinwo-jpg.github.io/frantic-board-audit/receipt.json"}]' frantic-board-audit/evidence.json > frantic-board-audit/evidence.tmp
+          mv frantic-board-audit/evidence.tmp frantic-board-audit/evidence.json
+          sed -i "s|Receipt reference: .*|Receipt reference: \`$receipt_ref\`|" frantic-board-audit/REPORT.md
+      - name: Publish generated receipt
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add frantic-board-audit/runx-version.txt frantic-board-audit/run-result.json frantic-board-audit/receipt.json frantic-board-audit/evidence.json frantic-board-audit/REPORT.md
+          git diff --cached --quiet || git commit -m "Publish governed Frantic board audit receipt"
+          git push
