@@ -1,0 +1,396 @@
+{
+  "closure": {
+    "closed_at": "2026-06-21T10:35:31.122Z",
+    "disposition": "closed",
+    "reason_code": "process_closed",
+    "summary": "cli-tool default completed"
+  },
+  "execution": {
+    "exit_code": 0,
+    "skill_claim": {
+      "captured_at": "2026-06-21T10:25:51.6455963Z",
+      "checks": {
+        "boardCaptured": true,
+        "boardOpenCountMatches": true,
+        "bountyPagesAtLeastFive": true,
+        "countsReconciled": true,
+        "ledgerCaptured": true,
+        "statusCaptured": true
+      },
+      "clean_checks": [
+        "Public status, board, and ledger responses were captured.",
+        "All 45 bounty rows reconcile to the named work states.",
+        "The board's bounties_open field matches the 14 open rows.",
+        "At least five individual bounty API pages are preserved with exact source URLs."
+      ],
+      "counts": {
+        "accepted": 1,
+        "claimed": 1,
+        "delivered": 9,
+        "open": 14,
+        "paid": 20,
+        "total": 45
+      },
+      "findings": [
+        {
+          "category": "health",
+          "evidence": "20 pending: Observed through event 2359; latest bounty event is 2376.",
+          "recommendation": "Process or retry the pending issue-mirror queue, then restore all_ok only after the lag reaches zero.",
+          "severity": "watch",
+          "source": "https://gofrantic.com/v1/status"
+        },
+        {
+          "category": "over-crowded",
+          "evidence": "Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) compete in one undifferentiated inventory block.",
+          "recommendation": "Keep the distinct scopes but stagger activation and add a visible runx-skill series tag with prerequisites.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/board"
+        },
+        {
+          "category": "duplicated-or-superseded",
+          "evidence": "Open #34 (inbox triage to drafted reply) substantially overlaps paid #32 (support triage and reply draft).",
+          "recommendation": "Close #34 as superseded, or rewrite it to name the non-overlapping input contract and evaluation dimension.",
+          "severity": "high",
+          "source": "https://gofrantic.com/v1/bounties/p-eec5d2beef"
+        },
+        {
+          "category": "confusing",
+          "evidence": "#49 is titled 'Give runx some love', pays $0, and exposes 99 slots without a cash-versus-goodwill cue in the title.",
+          "recommendation": "Rewrite the title to state that it is a goodwill/non-cash contribution lane and name the accepted artifact.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/bounties/p-0d641a030c"
+        },
+        {
+          "category": "stale",
+          "evidence": "Founding bounty #1 remains open from day one and requires three prior paid bounties while new agents have staged paid access.",
+          "recommendation": "Rewrite prerequisites and progress guidance for the current identity tiers, or close it after the founding window.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/bounties/p-7c933cc87d"
+        },
+        {
+          "category": "scope-adjacency",
+          "evidence": "#33 publishes Sourcey docs while #45 audits Sourcey gaps; both are valid but their sequence is implicit.",
+          "recommendation": "Keep both and cross-link them so #45 clearly consumes an existing docs site rather than competing with #33.",
+          "severity": "low",
+          "source": "https://gofrantic.com/v1/bounties/p-8b91e1ac8c"
+        }
+      ],
+      "pages_audited": [
+        "https://gofrantic.com/v1/bounties/p-0d641a030c",
+        "https://gofrantic.com/v1/bounties/p-7c933cc87d",
+        "https://gofrantic.com/v1/bounties/p-8b91e1ac8c",
+        "https://gofrantic.com/v1/bounties/p-aa9de6d1a9",
+        "https://gofrantic.com/v1/bounties/p-aedd36e3ad",
+        "https://gofrantic.com/v1/bounties/p-c2eb829cc3",
+        "https://gofrantic.com/v1/bounties/p-eec5d2beef",
+        "https://gofrantic.com/v1/bounties/p-f11e9d66f2",
+        "https://gofrantic.com/v1/bounties/p-f400e96ef5"
+      ],
+      "status": "audited"
+    },
+    "stderr": "",
+    "stdout": "{\"status\":\"audited\",\"captured_at\":\"2026-06-21T10:25:51.6455963Z\",\"counts\":{\"open\":14,\"claimed\":1,\"delivered\":9,\"accepted\":1,\"paid\":20,\"total\":45},\"pages_audited\":[\"https://gofrantic.com/v1/bounties/p-0d641a030c\",\"https://gofrantic.com/v1/bounties/p-7c933cc87d\",\"https://gofrantic.com/v1/bounties/p-8b91e1ac8c\",\"https://gofrantic.com/v1/bounties/p-aa9de6d1a9\",\"https://gofrantic.com/v1/bounties/p-aedd36e3ad\",\"https://gofrantic.com/v1/bounties/p-c2eb829cc3\",\"https://gofrantic.com/v1/bounties/p-eec5d2beef\",\"https://gofrantic.com/v1/bounties/p-f11e9d66f2\",\"https://gofrantic.com/v1/bounties/p-f400e96ef5\"],\"findings\":[{\"category\":\"health\",\"severity\":\"watch\",\"source\":\"https://gofrantic.com/v1/status\",\"evidence\":\"20 pending: Observed through event 2359; latest bounty event is 2376.\",\"recommendation\":\"Process or retry the pending issue-mirror queue, then restore all_ok only after the lag reaches zero.\"},{\"category\":\"over-crowded\",\"severity\":\"medium\",\"source\":\"https://gofrantic.com/v1/board\",\"evidence\":\"Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) compete in one undifferentiated inventory block.\",\"recommendation\":\"Keep the distinct scopes but stagger activation and add a visible runx-skill series tag with prerequisites.\"},{\"category\":\"duplicated-or-superseded\",\"severity\":\"high\",\"source\":\"https://gofrantic.com/v1/bounties/p-eec5d2beef\",\"evidence\":\"Open #34 (inbox triage to drafted reply) substantially overlaps paid #32 (support triage and reply draft).\",\"recommendation\":\"Close #34 as superseded, or rewrite it to name the non-overlapping input contract and evaluation dimension.\"},{\"category\":\"confusing\",\"severity\":\"medium\",\"source\":\"https://gofrantic.com/v1/bounties/p-0d641a030c\",\"evidence\":\"#49 is titled 'Give runx some love', pays $0, and exposes 99 slots without a cash-versus-goodwill cue in the title.\",\"recommendation\":\"Rewrite the title to state that it is a goodwill/non-cash contribution lane and name the accepted artifact.\"},{\"category\":\"stale\",\"severity\":\"medium\",\"source\":\"https://gofrantic.com/v1/bounties/p-7c933cc87d\",\"evidence\":\"Founding bounty #1 remains open from day one and requires three prior paid bounties while new agents have staged paid access.\",\"recommendation\":\"Rewrite prerequisites and progress guidance for the current identity tiers, or close it after the founding window.\"},{\"category\":\"scope-adjacency\",\"severity\":\"low\",\"source\":\"https://gofrantic.com/v1/bounties/p-8b91e1ac8c\",\"evidence\":\"#33 publishes Sourcey docs while #45 audits Sourcey gaps; both are valid but their sequence is implicit.\",\"recommendation\":\"Keep both and cross-link them so #45 clearly consumes an existing docs site rather than competing with #33.\"}],\"clean_checks\":[\"Public status, board, and ledger responses were captured.\",\"All 45 bounty rows reconcile to the named work states.\",\"The board's bounties_open field matches the 14 open rows.\",\"At least five individual bounty API pages are preserved with exact source URLs.\"],\"checks\":{\"statusCaptured\":true,\"boardCaptured\":true,\"ledgerCaptured\":true,\"bountyPagesAtLeastFive\":true,\"countsReconciled\":true,\"boardOpenCountMatches\":true}}\n",
+    "structured_output": {
+      "captured_at": "2026-06-21T10:25:51.6455963Z",
+      "checks": {
+        "boardCaptured": true,
+        "boardOpenCountMatches": true,
+        "bountyPagesAtLeastFive": true,
+        "countsReconciled": true,
+        "ledgerCaptured": true,
+        "statusCaptured": true
+      },
+      "clean_checks": [
+        "Public status, board, and ledger responses were captured.",
+        "All 45 bounty rows reconcile to the named work states.",
+        "The board's bounties_open field matches the 14 open rows.",
+        "At least five individual bounty API pages are preserved with exact source URLs."
+      ],
+      "counts": {
+        "accepted": 1,
+        "claimed": 1,
+        "delivered": 9,
+        "open": 14,
+        "paid": 20,
+        "total": 45
+      },
+      "findings": [
+        {
+          "category": "health",
+          "evidence": "20 pending: Observed through event 2359; latest bounty event is 2376.",
+          "recommendation": "Process or retry the pending issue-mirror queue, then restore all_ok only after the lag reaches zero.",
+          "severity": "watch",
+          "source": "https://gofrantic.com/v1/status"
+        },
+        {
+          "category": "over-crowded",
+          "evidence": "Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) compete in one undifferentiated inventory block.",
+          "recommendation": "Keep the distinct scopes but stagger activation and add a visible runx-skill series tag with prerequisites.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/board"
+        },
+        {
+          "category": "duplicated-or-superseded",
+          "evidence": "Open #34 (inbox triage to drafted reply) substantially overlaps paid #32 (support triage and reply draft).",
+          "recommendation": "Close #34 as superseded, or rewrite it to name the non-overlapping input contract and evaluation dimension.",
+          "severity": "high",
+          "source": "https://gofrantic.com/v1/bounties/p-eec5d2beef"
+        },
+        {
+          "category": "confusing",
+          "evidence": "#49 is titled 'Give runx some love', pays $0, and exposes 99 slots without a cash-versus-goodwill cue in the title.",
+          "recommendation": "Rewrite the title to state that it is a goodwill/non-cash contribution lane and name the accepted artifact.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/bounties/p-0d641a030c"
+        },
+        {
+          "category": "stale",
+          "evidence": "Founding bounty #1 remains open from day one and requires three prior paid bounties while new agents have staged paid access.",
+          "recommendation": "Rewrite prerequisites and progress guidance for the current identity tiers, or close it after the founding window.",
+          "severity": "medium",
+          "source": "https://gofrantic.com/v1/bounties/p-7c933cc87d"
+        },
+        {
+          "category": "scope-adjacency",
+          "evidence": "#33 publishes Sourcey docs while #45 audits Sourcey gaps; both are valid but their sequence is implicit.",
+          "recommendation": "Keep both and cross-link them so #45 clearly consumes an existing docs site rather than competing with #33.",
+          "severity": "low",
+          "source": "https://gofrantic.com/v1/bounties/p-8b91e1ac8c"
+        }
+      ],
+      "pages_audited": [
+        "https://gofrantic.com/v1/bounties/p-0d641a030c",
+        "https://gofrantic.com/v1/bounties/p-7c933cc87d",
+        "https://gofrantic.com/v1/bounties/p-8b91e1ac8c",
+        "https://gofrantic.com/v1/bounties/p-aa9de6d1a9",
+        "https://gofrantic.com/v1/bounties/p-aedd36e3ad",
+        "https://gofrantic.com/v1/bounties/p-c2eb829cc3",
+        "https://gofrantic.com/v1/bounties/p-eec5d2beef",
+        "https://gofrantic.com/v1/bounties/p-f11e9d66f2",
+        "https://gofrantic.com/v1/bounties/p-f400e96ef5"
+      ],
+      "status": "audited"
+    }
+  },
+  "payload": {
+    "captured_at": "2026-06-21T10:25:51.6455963Z",
+    "checks": {
+      "boardCaptured": true,
+      "boardOpenCountMatches": true,
+      "bountyPagesAtLeastFive": true,
+      "countsReconciled": true,
+      "ledgerCaptured": true,
+      "statusCaptured": true
+    },
+    "clean_checks": [
+      "Public status, board, and ledger responses were captured.",
+      "All 45 bounty rows reconcile to the named work states.",
+      "The board's bounties_open field matches the 14 open rows.",
+      "At least five individual bounty API pages are preserved with exact source URLs."
+    ],
+    "counts": {
+      "accepted": 1,
+      "claimed": 1,
+      "delivered": 9,
+      "open": 14,
+      "paid": 20,
+      "total": 45
+    },
+    "findings": [
+      {
+        "category": "health",
+        "evidence": "20 pending: Observed through event 2359; latest bounty event is 2376.",
+        "recommendation": "Process or retry the pending issue-mirror queue, then restore all_ok only after the lag reaches zero.",
+        "severity": "watch",
+        "source": "https://gofrantic.com/v1/status"
+      },
+      {
+        "category": "over-crowded",
+        "evidence": "Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) compete in one undifferentiated inventory block.",
+        "recommendation": "Keep the distinct scopes but stagger activation and add a visible runx-skill series tag with prerequisites.",
+        "severity": "medium",
+        "source": "https://gofrantic.com/v1/board"
+      },
+      {
+        "category": "duplicated-or-superseded",
+        "evidence": "Open #34 (inbox triage to drafted reply) substantially overlaps paid #32 (support triage and reply draft).",
+        "recommendation": "Close #34 as superseded, or rewrite it to name the non-overlapping input contract and evaluation dimension.",
+        "severity": "high",
+        "source": "https://gofrantic.com/v1/bounties/p-eec5d2beef"
+      },
+      {
+        "category": "confusing",
+        "evidence": "#49 is titled 'Give runx some love', pays $0, and exposes 99 slots without a cash-versus-goodwill cue in the title.",
+        "recommendation": "Rewrite the title to state that it is a goodwill/non-cash contribution lane and name the accepted artifact.",
+        "severity": "medium",
+        "source": "https://gofrantic.com/v1/bounties/p-0d641a030c"
+      },
+      {
+        "category": "stale",
+        "evidence": "Founding bounty #1 remains open from day one and requires three prior paid bounties while new agents have staged paid access.",
+        "recommendation": "Rewrite prerequisites and progress guidance for the current identity tiers, or close it after the founding window.",
+        "severity": "medium",
+        "source": "https://gofrantic.com/v1/bounties/p-7c933cc87d"
+      },
+      {
+        "category": "scope-adjacency",
+        "evidence": "#33 publishes Sourcey docs while #45 audits Sourcey gaps; both are valid but their sequence is implicit.",
+        "recommendation": "Keep both and cross-link them so #45 clearly consumes an existing docs site rather than competing with #33.",
+        "severity": "low",
+        "source": "https://gofrantic.com/v1/bounties/p-8b91e1ac8c"
+      }
+    ],
+    "pages_audited": [
+      "https://gofrantic.com/v1/bounties/p-0d641a030c",
+      "https://gofrantic.com/v1/bounties/p-7c933cc87d",
+      "https://gofrantic.com/v1/bounties/p-8b91e1ac8c",
+      "https://gofrantic.com/v1/bounties/p-aa9de6d1a9",
+      "https://gofrantic.com/v1/bounties/p-aedd36e3ad",
+      "https://gofrantic.com/v1/bounties/p-c2eb829cc3",
+      "https://gofrantic.com/v1/bounties/p-eec5d2beef",
+      "https://gofrantic.com/v1/bounties/p-f11e9d66f2",
+      "https://gofrantic.com/v1/bounties/p-f400e96ef5"
+    ],
+    "status": "audited"
+  },
+  "receipt": {
+    "acts": [
+      {
+        "artifact_refs": [],
+        "closure": {
+          "closed_at": "2026-06-21T10:35:31.122Z",
+          "disposition": "closed",
+          "reason_code": "process_exit",
+          "summary": "cli-tool exited successfully"
+        },
+        "criterion_bindings": [
+          {
+            "criterion_id": "process_exit",
+            "evidence_refs": [],
+            "status": "verified",
+            "summary": "cli-tool exited successfully",
+            "verification_refs": []
+          }
+        ],
+        "form": "observation",
+        "id": "act_default",
+        "intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Runtime graph execution was admitted by the local harness",
+          "purpose": "Run graph step default",
+          "success_criteria": [
+            {
+              "criterion_id": "process_exit",
+              "required": true,
+              "statement": "cli-tool exits successfully"
+            }
+          ]
+        },
+        "source_refs": [],
+        "summary": "Executed graph step default",
+        "target_refs": []
+      }
+    ],
+    "authority": {
+      "actor_ref": {
+        "type": "principal",
+        "uri": "runx:principal:local_runtime"
+      },
+      "attenuation": {
+        "parent_authority_ref": null,
+        "subset_proof": null
+      },
+      "authority_proof_refs": [],
+      "enforcement": {
+        "profile_hash": "sha256:runtime-skeleton-enforcement",
+        "redaction_refs": [],
+        "setup_refs": [],
+        "teardown_refs": []
+      },
+      "grant_refs": [],
+      "scope_refs": [],
+      "terms": []
+    },
+    "canonicalization": "runx.receipt.c14n.v1",
+    "created_at": "2026-06-21T10:35:31.122Z",
+    "decisions": [
+      {
+        "artifact_refs": [],
+        "choice": "open",
+        "closure": null,
+        "decision_id": "dec_default",
+        "inputs": {
+          "opportunity_refs": [],
+          "selection_ref": null,
+          "signal_refs": [],
+          "target_ref": null
+        },
+        "justification": {
+          "evidence_refs": [],
+          "summary": "runtime graph planner selected this node"
+        },
+        "proposed_intent": {
+          "constraints": [],
+          "derived_from": [],
+          "legitimacy": "Local graph execution requested this node",
+          "purpose": "Open runtime node default",
+          "success_criteria": []
+        },
+        "selected_act_id": "act_default",
+        "selected_harness_ref": null
+      }
+    ],
+    "digest": "sha256:1429294aa5ec4ec3cfa75098145a10892e3578076a04cecd53e0d4f4f5c67b3a",
+    "id": "sha256:4f63d350d71983bcc03e257354937c00d5ac1c240e15279a75e436c108dd3bcf",
+    "idempotency": {
+      "content_hash": "sha256:run_default_44136fa355b3-default-content",
+      "intent_key": "sha256:run_default_44136fa355b3-default-intent",
+      "trigger_fingerprint": "sha256:run_default_44136fa355b3-default-trigger"
+    },
+    "issuer": {
+      "kid": "github-actions-frantic-audit-27901616575",
+      "public_key_sha256": "sha256:90dfec433f2acb4e1b32ded99e6e447f699d37ca04e4dba5f162c65e10d38c6a",
+      "type": "hosted"
+    },
+    "lineage": {
+      "children": [],
+      "sync": []
+    },
+    "schema": "runx.receipt.v1",
+    "seal": {
+      "closed_at": "2026-06-21T10:35:31.122Z",
+      "criteria": [
+        {
+          "criterion_id": "process_exit",
+          "evidence_refs": [],
+          "status": "verified",
+          "summary": "cli-tool exited successfully",
+          "verification_refs": []
+        }
+      ],
+      "disposition": "closed",
+      "last_observed_at": "2026-06-21T10:35:31.122Z",
+      "reason_code": "process_closed",
+      "summary": "cli-tool default completed"
+    },
+    "signals": [],
+    "signature": {
+      "alg": "Ed25519",
+      "value": "base64:V8WIK-Z2Z4BSrn6MEWolA9Yz21nNRzT718pQ31aZVnQh7y9LnPhKe9dhpmT-r5eY5gzlA_dMIc687ylbKdxoDg"
+    },
+    "subject": {
+      "commitments": [],
+      "kind": "skill",
+      "ref": {
+        "type": "harness",
+        "uri": "hrn_run_default_44136fa355b3_default"
+      }
+    }
+  },
+  "receipt_id": "sha256:4f63d350d71983bcc03e257354937c00d5ac1c240e15279a75e436c108dd3bcf",
+  "run_id": "run_default_44136fa355b3",
+  "schema": "runx.skill_run.v1",
+  "skill_name": "frantic-board-health-audit",
+  "status": "sealed"
+}

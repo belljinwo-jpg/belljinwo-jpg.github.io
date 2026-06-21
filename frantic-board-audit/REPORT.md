@@ -33,4 +33,4 @@ runx skill frantic-board-audit/skill --json --receipts "$RUNNER_TEMP/receipts"
 
 The immutable inputs are published under `frantic-board-audit/skill/captures/`. The machine-readable findings are in `evidence.json`.
 
-Receipt reference: `pending`
+Receipt reference: `runx:receipt:sha256:4f63d350d71983bcc03e257354937c00d5ac1c240e15279a75e436c108dd3bcf`

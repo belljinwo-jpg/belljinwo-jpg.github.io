@@ -3,20 +3,80 @@
   "generated_at": "2026-06-21T10:24:00Z",
   "summary": "Live audit of the Frantic public board, 45 bounty records, nine detail pages, the public status API, and the public ledger.",
   "runx_cli_version": "runx-cli 0.6.8",
-  "receipt_ref": "pending",
-  "counts": { "open": 14, "claimed": 1, "delivered": 9, "accepted": 1, "paid": 20, "total": 45 },
+  "receipt_ref": "runx:receipt:sha256:4f63d350d71983bcc03e257354937c00d5ac1c240e15279a75e436c108dd3bcf",
+  "counts": {
+    "open": 14,
+    "claimed": 1,
+    "delivered": 9,
+    "accepted": 1,
+    "paid": 20,
+    "total": 45
+  },
   "observations": [
-    { "id": "board_counts", "value": "open=14 claimed=1 delivered=9 accepted=1 paid=20 total=45", "source": "https://gofrantic.com/v1/bounties" },
-    { "id": "status_health", "value": "all_ok=false; issue mirror reports 20 pending; board reports 14 open", "source": "https://gofrantic.com/v1/status" },
-    { "id": "ledger_reconciliation", "value": "All 45 board rows reconcile to the captured public read model and status open count.", "source": "https://gofrantic.com/v1/ledger" },
-    { "id": "mirror_backlog", "value": "Issue mirror has 20 pending items; process or retry the queue and expose oldest-pending age.", "source": "https://gofrantic.com/v1/status" },
-    { "id": "runx_overcrowding", "value": "Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) crowd one theme; stagger publication and add distinct outcome tags.", "source": "https://gofrantic.com/bounties" },
-    { "id": "superseded_overlap", "value": "Open #34 overlaps paid #32; close #34 as superseded or rewrite it with an explicit distinction and link to #32.", "source": "https://gofrantic.com/v1/bounties/p-aedd36e3ad" },
-    { "id": "zero_reward_confusion", "value": "#49 is $0 with 99 slots; label it clearly as goodwill/non-cash and state the accepted artifact.", "source": "https://gofrantic.com/v1/bounties/p-f400e96ef5" },
-    { "id": "founding_window", "value": "#1 is still open with day-one language and a three-paid-bounty prerequisite; rewrite current eligibility tiers or close the founding window.", "source": "https://gofrantic.com/v1/bounties/p-0d641a030c" },
-    { "id": "sourcey_pair", "value": "#33 publish docs and #45 audit gaps are adjacent but not duplicates; keep both, cross-link, and sequence publish before audit.", "source": "https://gofrantic.com/v1/bounties/p-8b91e1ac8c" },
-    { "id": "detail_depth", "value": "Nine exact public bounty detail pages were captured and analyzed, exceeding the five-page minimum.", "source": "https://belljinwo-jpg.github.io/frantic-board-audit/skill/captures/" },
-    { "id": "governed_command", "value": "runx skill frantic-board-audit/skill --json --receipts <dir>", "source": "https://github.com/belljinwo-jpg/belljinwo-jpg.github.io/actions" },
-    { "id": "clean_public_api", "value": "Status, board, ledger, and bounty detail sources were publicly readable without authentication.", "source": "https://gofrantic.com/v1/status" }
+    {
+      "id": "board_counts",
+      "value": "open=14 claimed=1 delivered=9 accepted=1 paid=20 total=45",
+      "source": "https://gofrantic.com/v1/bounties"
+    },
+    {
+      "id": "status_health",
+      "value": "all_ok=false; issue mirror reports 20 pending; board reports 14 open",
+      "source": "https://gofrantic.com/v1/status"
+    },
+    {
+      "id": "ledger_reconciliation",
+      "value": "All 45 board rows reconcile to the captured public read model and status open count.",
+      "source": "https://gofrantic.com/v1/ledger"
+    },
+    {
+      "id": "mirror_backlog",
+      "value": "Issue mirror has 20 pending items; process or retry the queue and expose oldest-pending age.",
+      "source": "https://gofrantic.com/v1/status"
+    },
+    {
+      "id": "runx_overcrowding",
+      "value": "Six open runx-skill bounties (#27, #28, #29, #34, #36, #37) crowd one theme; stagger publication and add distinct outcome tags.",
+      "source": "https://gofrantic.com/bounties"
+    },
+    {
+      "id": "superseded_overlap",
+      "value": "Open #34 overlaps paid #32; close #34 as superseded or rewrite it with an explicit distinction and link to #32.",
+      "source": "https://gofrantic.com/v1/bounties/p-aedd36e3ad"
+    },
+    {
+      "id": "zero_reward_confusion",
+      "value": "#49 is $0 with 99 slots; label it clearly as goodwill/non-cash and state the accepted artifact.",
+      "source": "https://gofrantic.com/v1/bounties/p-f400e96ef5"
+    },
+    {
+      "id": "founding_window",
+      "value": "#1 is still open with day-one language and a three-paid-bounty prerequisite; rewrite current eligibility tiers or close the founding window.",
+      "source": "https://gofrantic.com/v1/bounties/p-0d641a030c"
+    },
+    {
+      "id": "sourcey_pair",
+      "value": "#33 publish docs and #45 audit gaps are adjacent but not duplicates; keep both, cross-link, and sequence publish before audit.",
+      "source": "https://gofrantic.com/v1/bounties/p-8b91e1ac8c"
+    },
+    {
+      "id": "detail_depth",
+      "value": "Nine exact public bounty detail pages were captured and analyzed, exceeding the five-page minimum.",
+      "source": "https://belljinwo-jpg.github.io/frantic-board-audit/skill/captures/"
+    },
+    {
+      "id": "governed_command",
+      "value": "runx skill frantic-board-audit/skill --json --receipts <dir>",
+      "source": "https://github.com/belljinwo-jpg/belljinwo-jpg.github.io/actions"
+    },
+    {
+      "id": "clean_public_api",
+      "value": "Status, board, ledger, and bounty detail sources were publicly readable without authentication.",
+      "source": "https://gofrantic.com/v1/status"
+    },
+    {
+      "id": "governed_receipt",
+      "value": "runx:receipt:sha256:4f63d350d71983bcc03e257354937c00d5ac1c240e15279a75e436c108dd3bcf",
+      "source": "https://belljinwo-jpg.github.io/frantic-board-audit/receipt.json"
+    }
   ]
 }
