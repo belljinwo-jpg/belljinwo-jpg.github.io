@@ -14,6 +14,11 @@
   },
   "observations": [
     {
+      "id": "runx_cli_version",
+      "value": "runx-cli 0.6.8",
+      "source": "https://belljinwo-jpg.github.io/frantic-board-audit/runx-version.txt"
+    },
+    {
       "id": "board_counts",
       "value": "open=14 claimed=1 delivered=9 accepted=1 paid=20 total=45",
       "source": "https://gofrantic.com/v1/bounties"
